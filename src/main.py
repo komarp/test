@@ -1,14 +1,12 @@
+import os
+
 from fastapi import FastAPI
 
 
 app = FastAPI()
 
 
-
-@app.get('/')
+@app.get("/")
 async def healthcheck():
-    return {'healthy': 'YES'
-            }
-
-
-
+    print(os.F_OK)
+    return {"healthy": "YES"}

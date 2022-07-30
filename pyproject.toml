@@ -1,0 +1,49 @@
+# Base linters setup for Python projects
+# Author: Pavel Komar
+# Dependencies: pyproject-autoflake; isort; black; pyproject-flake8; mypy
+
+[tool.isort]
+# multiline output option: there are 10 options
+multi_line_output = 3
+# max line-length whithin the project
+line_length = 120
+# includes a trailing comma on multi line imports that include parentheses.
+include_trailing_comma= true
+# number of lines after imports section
+lines_after_imports = 2
+
+
+[tool.black]
+# max line-length whithin the project
+line-length = 120
+# version of Python within the project
+target-version = ['py38']
+
+[tool.flake8]
+# max line-length whithin the project
+max-line-length = 120
+# max number of program branching paths
+max-complexity = 5
+# override defaults
+ignore = 'E126, W503'
+extend-ignore = [
+    # whitespace before “:” *for compatibility with “black”
+    'E203'
+]
+# ignore "imported but unused" error in each __init__.py file
+per-file-ignores = '__init__.py:F401'
+
+
+[tool.mypy]
+# version of Python within the project
+python_version = 3.8
+# avoid dynamic-typed functions
+disallow_untyped_defs = true
+# explicitly specify Optional[...], avoid “def sample(arg: str = None): …”
+no_implicit_optional = true
+# compatibility with third-part libraries
+warn_return_any = true
+# get rid of specifying # type: ignore, preferring use # type: ignore[<error-code>]
+show_error_codes = true
+# ensures that there are only ignores which are effective.
+warn_unused_ignores = true
